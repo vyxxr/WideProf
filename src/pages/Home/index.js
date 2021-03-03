@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {Component} from 'react';
-import { Text, View, Image, TextInput } from 'react-native';
+import { Text, View, Image, TextInput, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import styles from './styles'
@@ -11,7 +11,55 @@ export default class App extends Component {
 
         this.state = {
             text: '',
+            services: [
+                {
+                    id: 'private',
+                    title: 'Privado',
+                    description: 'Resultado preciso',
+                },
+                {
+                    id: 'video',
+                    title: 'Vídeo',
+                    description: 'Cara a cara',
+                },
+                {
+                    id: 'chat',
+                    title: 'Chats',
+                    description: 'Fácil e eficiente'
+                }
+            ]
         }
+
+        this.renderItem = this.renderItem.bind(this);
+    }
+
+    renderItem(data) {
+        switch (data.item.id) {
+            case 'private':
+                var icon = 'home-outline'
+                var colors = ['#FD7373', '#FC4444']
+                break;
+            case 'video':
+                var icon = 'videocam-outline'
+                var colors = ['#40C1FF', '#00ADFF']
+                break;
+            default:
+                var icon = 'chatbubble-outline'
+                var colors = ['#F386DF', '#EF5ED4']
+                break;
+        }
+
+        return (
+            <View style={{...styles.cards, backgroundColor: colors[0]}}>
+                <View style={{...styles.iconCard, backgroundColor: colors[1]}}>
+                    <Ionicons name={icon} size={35} color='#fff'/>
+                </View>
+                <View>
+                    <Text style={[styles.whiteText, styles.titleCard]}>{data.item.title}</Text>
+                    <Text style={[styles.whiteText, styles.descriptionCard]}>{data.item.description}</Text>
+                </View>
+            </View>
+        )
     }
 
     render() {
@@ -38,37 +86,16 @@ export default class App extends Component {
                 </View>
                 <View style={{height: 200}}> 
                     <Text style={styles.title}>Nossos serviços</Text>
-                    <View style={{flex: 1, flexDirection: 'row', backgroundColor: 'blue'}}>
-                        <View style={styles.private}>
-                            <View>
-                                <Ionicons name="home-outline" size={35} color='#fff' style={styles.iconCard} />
-                            </View>
-                            <View>
-                                <Text style={[styles.whiteText, styles.titleCard]}>Privado</Text>
-                                <Text style={[styles.whiteText, styles.descriptionCard]}>Resultado preciso</Text>
-                            </View>
-                        </View>
 
-                        <View style={styles.videocall}>
-                            <View>
-                                <Ionicons name="home-outline" size={35} color='#fff' style={styles.iconCard} />
-                            </View>
-                            <View>
-                                <Text style={[styles.whiteText, styles.titleCard]}>Privado</Text>
-                                <Text style={[styles.whiteText, styles.descriptionCard]}>Resultado preciso</Text>
-                            </View>
-                        </View>
-
-                        <View style={styles.chats}>
-                            <View>
-                                <Ionicons name="home-outline" size={35} color='#fff' style={styles.iconCard} />
-                            </View>
-                            <View>
-                                <Text style={[styles.whiteText, styles.titleCard]}>Privado</Text>
-                                <Text style={[styles.whiteText, styles.descriptionCard]}>Resultado preciso</Text>
-                            </View>
-                        </View>
-                    </View>
+                    <FlatList
+                        style={{flex: 1, flexDirection: 'row'}}
+                        horizontal
+                        showsHorizontalScrollIndicator={false}
+                        data={this.state.services}
+                        renderItem={this.renderItem}
+                        keyExtractor={item => item.id}
+                        ItemSeparatorComponent = {() => <View style={{width: 20}}></View>}
+                    />
                 </View>
             </View>
         );

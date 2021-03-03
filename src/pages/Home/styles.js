@@ -49,11 +49,6 @@ export default StyleSheet.create({
         marginBottom: 20
     },
 
-    servicos: {
-        height: 200,
-        backgroundColor: 'red'
-    },
-
     whiteText: {
         color: '#fff'
     },
@@ -69,22 +64,19 @@ export default StyleSheet.create({
         opacity: 0.8
     },
 
-    private: {
-        flex: 1, 
-        backgroundColor: '#FD7373',
-        padding: 10
+    cards: {
+        width: 130,
+        padding: 15,
+        justifyContent: 'space-between',
+        borderRadius: 15
     },
 
-    videocall: {
-        flex: 1, 
-        backgroundColor: '#40C1FF',
-        padding: 10
-    },
-
-    chats: {
-        flex: 1, 
-        backgroundColor: '#F386DF',
-        padding: 10
-    },
+    iconCard: {
+        width: 50,
+        height: 50,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 12
+    }
 
 });
