@@ -7,7 +7,7 @@
       "bio": "Der Chemiker hat sein Studium an der Universität Göttingen abgeschlossen und vermittelt mit Leidenschaft mein Wissen.",
       "nota": "4.3",
       "pais": "Alemanha",
-      "foto": "/src/assets/fatih_risenda.jpg"
+      "foto": "/assets/fatih_risenda.jpg"
     },
     {
       "nome": "Salman Nasrudin",
@@ -16,7 +16,7 @@
       "bio": "Quisque fermentum, purus a fermentum tincidunt, nulla erat elementum ante, vel tempor metus ex et tellus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
       "nota": "4.0",
       "pais": "Filipinas",
-      "foto": "/src/assets/salman_nasrudin.jpeg"
+      "foto": "/assets/salman_nasrudin.jpeg"
     },
     {
       "nome": "Yuri Saiori",
@@ -25,7 +25,7 @@
       "bio": "もしこの項目を作成したことがあるのにこのメッセージがでる場合、データベースの更新が遅れているために表示できない可能性があります",
       "nota": "4.5",
       "pais": "Japão",
-      "foto": "/src/assets/yuri_saiori.jpeg"
+      "foto": "/assets/yuri_saiori.jpeg"
     },
     {
       "nome": "Norman C. Bauer",
@@ -34,7 +34,7 @@
       "bio": "Nulla faucibus orci eget ullamcorper iaculis. Nullam eget tempor erat. Aliquam imperdiet, nisi at tincidunt euismod, lorem lacus vestibulum ligula, vel faucibus nibh nisi a est.",
       "nota": "3.6",
       "pais": "United States",
-      "foto": "/src/assets/norman_bauer.jpeg"
+      "foto": "/assets/norman_bauer.jpeg"
     },
     {
       "nome": "Consuelo Lombardo",
@@ -43,7 +43,7 @@
       "bio": "Suspendisse erat nisl, pellentesque id blandit sed, rhoncus ut nibh. Suspendisse efficitur vitae leo ac dapibus.",
       "nota": "4.8",
       "pais": "Itália",
-      "foto": "/src/assets/consuelo_lombardo.jpeg"
+      "foto": "/assets/consuelo_lombardo.jpeg"
     },
     {
       "nome": "Isak Garberg",
@@ -52,7 +52,7 @@
       "bio": "Etiam in ex tortor. Phasellus pretium tincidunt eros. Mauris non sapien et mauris lacinia semper. Integer rhoncus magna risus, aliquam ultrices elit pretium vel.",
       "nota": "4.4",
       "pais": "Noruega",
-      "foto": "/src/assets/isak_garberg.jpeg"
+      "foto": "/assets/isak_garberg.jpeg"
     },
     {
       "nome": "Małgorzata Szczepańska",
@@ -61,7 +61,7 @@
       "bio": "Phasellus condimentum mauris a nulla porttitor, at porta nisi facilisis. Cras aliquam ex a facilisis pharetra. Vivamus ex leo, auctor a tristique nec, lobortis vel velit. Duis nec commodo ipsum, sed eleifend tellus.",
       "nota": "3.5",
       "pais": "Polônia",
-      "foto": "/src/assets/malgorzata.jpeg"
+      "foto": "/assets/malgorzata.jpeg"
     },
     {
       "nome": "Mike Hahn",
@@ -70,7 +70,7 @@
       "bio": "Sed sit amet magna condimentum mi iaculis gravida. Nulla faucibus cursus mauris vel gravida. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula dignissim pellentesque.",
       "nota": "4.4",
       "pais": "Alemanha",
-      "foto": "/src/assets/mike_hahn.jpeg"
+      "foto": "/assets/mike_hahn.jpeg"
     },
     {
       "nome": "Andreas Arlsen",
@@ -79,7 +79,7 @@
       "bio": "Fusce lobortis nunc a ultrices imperdiet. In fermentum quam id elit porta imperdiet. Nullam bibendum sollicitudin nunc luctus rhoncus.",
       "nota": "3.7",
       "pais": "Espanha",
-      "foto": "/src/assets/andreas_arlsen.jpeg"
+      "foto": "/assets/andreas_arlsen.jpeg"
     },
     {
       "nome": "Andreas Arlsen",
@@ -88,7 +88,7 @@
       "bio": "Fusce lobortis nunc a ultrices imperdiet. In fermentum quam id elit porta imperdiet. Nullam bibendum sollicitudin nunc luctus rhoncus.",
       "nota": "3.7",
       "pais": "Espanha",
-      "foto": "/src/assets/andreas_arlsen.jpeg"
+      "foto": "/assets/andreas_arlsen.jpeg"
     },
     {
       "nome": "Michael Simmons",
@@ -97,7 +97,7 @@
       "bio": "Fusce lobortis nunc a ultrices imperdiet. In fermentum quam id elit porta imperdiet. Nullam bibendum sollicitudin nunc luctus rhoncus.",
       "nota": "4.1",
       "pais": "Alemanha",
-      "foto": "/src/assets/michael_simmons.jpeg"
+      "foto": "/assets/michael_simmons.jpeg"
     },
     {
       "nome": "Nivi Petrussen",
@@ -106,7 +106,7 @@
       "bio": "Nam tincidunt tincidunt sem nec euismod. Mauris in fermentum justo. Nam varius condimentum turpis in varius. Etiam lacinia metus eu ultrices aliquam.",
       "nota": "4.0",
       "pais": "Groenlândia",
-      "foto": "/src/assets/nivi_petrussen.jpeg"
+      "foto": "/assets/nivi_petrussen.jpeg"
     }
   ]
 }
