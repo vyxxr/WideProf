@@ -1,0 +1,13 @@
+{
+  "professores": [
+    {
+      "nome": "Fatih Risenda",
+      "idade": "32",
+      "materia": "Química",
+      "bio": "Der Chemiker hat sein Studium an der Universität Göttingen abgeschlossen und vermittelt mit Leidenschaft mein Wissen.",
+      "nota": "4.3",
+      "pais": "Alemanha",
+      "foto": "/src/assets/fatih_risenda.jpg"
+    }
+  ]
+}
