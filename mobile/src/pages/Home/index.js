@@ -3,7 +3,8 @@ import React, {Component} from 'react';
 import { Text, View, Image, TextInput, FlatList } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import styles from './styles'
+import api from '../../services/api';
+import styles from './styles';
 
 export default class App extends Component {
     constructor(props) {
@@ -11,6 +12,7 @@ export default class App extends Component {
 
         this.state = {
             text: '',
+            teachers: [],
             services: [
                 {
                     id: 'private',
@@ -31,6 +33,16 @@ export default class App extends Component {
         }
 
         this.renderItem = this.renderItem.bind(this);
+        this.loadTeachers = this.loadTeachers.bind(this);
+    }
+
+    componentDidMount() {
+        this.loadTeachers()
+    }
+
+    async loadTeachers() {
+        const response = await api.get()
+        this.setState({teachers: response.data})
     }
 
     renderItem(data) {
