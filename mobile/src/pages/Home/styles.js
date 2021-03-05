@@ -49,10 +49,6 @@ export default StyleSheet.create({
         marginBottom: 20
     },
 
-    whiteText: {
-        color: '#fff'
-    },
-
     titleCard: {
         fontSize: 18,
         fontWeight: 'bold'
@@ -77,6 +73,5 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 12
-    }
-
+    },
 });
