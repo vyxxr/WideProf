@@ -121,8 +121,8 @@ export default class App extends Component {
                         <Ionicons name="search-outline" size={22} color='#999' style={styles.iconInput} />
                         <TextInput
                             style={styles.input}
-                            onChangeText={text => this.setState(text)}
                             value={this.state.text}
+                            onChangeText={text => this.setState({text})}
                             placeholder='Qual matéria deseja aprender?'
                         />
                     </View>
