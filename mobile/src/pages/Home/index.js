@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, FlatList, ScrollView } from 'react-native';
+import { Text, View, Image, TextInput, FlatList, ScrollView, LogBox } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import api from '../../services/api';
@@ -34,12 +34,21 @@ export default class App extends Component {
         }
 
         this.renderServices = this.renderServices.bind(this);
+        this.renderSearch = this.renderSearch.bind(this);
         this.renderSubjects = this.renderSubjects.bind(this);
         this.loadTeachers = this.loadTeachers.bind(this);
+        this.onChangeText = this.onChangeText.bind(this);
     }
 
     componentDidMount() {
         this.loadTeachers()
+        LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+    }
+
+    onChangeText(text) {
+        var result = this.state.subjects.filter(item => item.toLowerCase().includes(text.toLowerCase()))
+
+        this.setState({text: text ? result : ''})
     }
 
     async loadTeachers() {
@@ -53,6 +62,20 @@ export default class App extends Component {
         })
 
         this.setState({ teachers: response.data.professores, subjects })
+    }
+
+    renderSearch(data) {
+        const count = this.state.teachers.filter((obj) => obj.materia === data.item).length;
+
+        return (
+            <View style={[styles.cardSearch, data.index < 2 ? {borderBottomWidth: 0.5, borderBottomColor: '#bfbfbf'} : null]}>
+                <Text style={{fontSize: 18, fontWeight: 'bold', color: '#808080'}}>{data.item}</Text>
+                <View style={{flexDirection: 'row'}}>
+                    <Text style={{fontSize: 16, fontWeight: 'bold', color: '#808080', marginRight: 10}}>{count}</Text>
+                    <Ionicons name={'school-outline'} size={20} color='#808080' />
+                </View>
+            </View>
+        )
     }
 
     renderServices(data) {
@@ -121,10 +144,22 @@ export default class App extends Component {
                         <Ionicons name="search-outline" size={22} color='#999' style={styles.iconInput} />
                         <TextInput
                             style={styles.input}
-                            value={this.state.text}
-                            onChangeText={text => this.setState({text})}
+                            onChangeText={text => this.onChangeText(text)}
                             placeholder='Qual matéria deseja aprender?'
                         />
+                    {this.state.text.length !== 0 ?
+                        <View style={styles.containerSearch}>
+                            <FlatList
+                                style={{ flex: 1 }}
+                                data={this.state.text.slice(0, 3)}
+                                renderItem={this.renderSearch}
+                                keyExtractor={item => item}
+                                extraData={this.state}
+                            />
+                        </View>
+                    :
+                        null
+                    }
                     </View>
                     <View style={{ height: 200, marginBottom: 40 }}>
                         <Text style={styles.title}>Nossos serviços</Text>

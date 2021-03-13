@@ -37,6 +37,27 @@ export default StyleSheet.create({
         borderRadius: 10
     },
 
+    containerSearch: {
+        width: '100%',
+        position: 'absolute',
+        zIndex: 2,
+        alignSelf: 'flex-start',
+        top: 40,
+        backgroundColor: '#f5f6f8',
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius: 10,
+        overflow: 'hidden',
+    },
+
+    cardSearch: {
+        width: '100%',
+        backgroundColor: '#f5f6f8',
+        flexDirection: 'row',
+        padding: 15,
+        alignItems: 'center',
+        justifyContent: 'space-between'
+    },
+
     iconInput: {
         position: 'absolute',
         zIndex: 1,
