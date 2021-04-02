@@ -82,15 +82,6 @@
       "foto": "/assets/andreas_arlsen.jpeg"
     },
     {
-      "nome": "Andreas Arlsen",
-      "idade": "46",
-      "materia": "Biologia",
-      "bio": "Fusce lobortis nunc a ultrices imperdiet. In fermentum quam id elit porta imperdiet. Nullam bibendum sollicitudin nunc luctus rhoncus.",
-      "nota": "3.7",
-      "pais": "Espanha",
-      "foto": "/assets/andreas_arlsen.jpeg"
-    },
-    {
       "nome": "Michael Simmons",
       "idade": "46",
       "materia": "Matemática",

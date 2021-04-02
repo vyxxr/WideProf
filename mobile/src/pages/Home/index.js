@@ -1,17 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react';
-import { Text, View, Image, TextInput, FlatList, ScrollView, LogBox } from 'react-native';
+import { Text, View, Image, FlatList, ScrollView, LogBox, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 import api from '../../services/api';
 import styles from './styles';
+import InputSearch from '../../components/InputSearch'
 
 export default class App extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            text: '',
+            loading: true,
             teachers: [],
             subjects: [],
             services: [
@@ -34,21 +35,14 @@ export default class App extends Component {
         }
 
         this.renderServices = this.renderServices.bind(this);
-        this.renderSearch = this.renderSearch.bind(this);
         this.renderSubjects = this.renderSubjects.bind(this);
         this.loadTeachers = this.loadTeachers.bind(this);
-        this.onChangeText = this.onChangeText.bind(this);
+        this.goToTeachersPage = this.goToTeachersPage.bind(this);
     }
 
     componentDidMount() {
         this.loadTeachers()
         LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-    }
-
-    onChangeText(text) {
-        var result = this.state.subjects.filter(item => item.toLowerCase().includes(text.toLowerCase()))
-
-        this.setState({text: text ? result : ''})
     }
 
     async loadTeachers() {
@@ -61,25 +55,16 @@ export default class App extends Component {
             }
         })
 
-        this.setState({ teachers: response.data.professores, subjects })
+        this.setState({ teachers: response.data.professores, subjects, loading: false })
     }
 
-    renderSearch(data) {
-        const count = this.state.teachers.filter((obj) => obj.materia === data.item).length;
-
-        return (
-            <View style={[styles.cardSearch, data.index < 2 ? {borderBottomWidth: 0.5, borderBottomColor: '#bfbfbf'} : null]}>
-                <Text style={{fontSize: 18, fontWeight: 'bold', color: '#808080'}}>{data.item}</Text>
-                <View style={{flexDirection: 'row'}}>
-                    <Text style={{fontSize: 16, fontWeight: 'bold', color: '#808080', marginRight: 10}}>{count}</Text>
-                    <Ionicons name={'school-outline'} size={20} color='#808080' />
-                </View>
-            </View>
-        )
+    goToTeachersPage(data) {
+        // const teachers = this.state.teachers.filter((obj) => obj.materia === data)
+        this.props.navigation.navigate('Teachers', {data: data, subjects: this.state.subjects, teachers: this.state.teachers})
     }
 
     renderServices(data) {
-        switch (data.item.id) {
+        switch (data.id) {
             case 'screencast':
                 var icon = 'laptop-outline'
                 var colors = ['#FD7373', '#FC4444']
@@ -100,37 +85,44 @@ export default class App extends Component {
                     <Ionicons name={icon} size={35} color='#fff' />
                 </View>
                 <View>
-                    <Text style={{...styles.titleCard, color: '#fff'}}>{data.item.title}</Text>
-                    <Text style={{...styles.descriptionCard, color: '#fff'}}>{data.item.description}</Text>
+                    <Text style={{...styles.titleCard, color: '#fff'}}>{data.title}</Text>
+                    <Text style={{...styles.descriptionCard, color: '#fff'}}>{data.description}</Text>
                 </View>
             </View>
         )
     }
 
     renderSubjects(data) {
-        const count = this.state.teachers.filter((obj) => obj.materia === data.item).length;
+        const count = this.state.teachers.filter((obj) => obj.materia === data).length;
 
         return (
-            <View style={{ ...styles.cards, backgroundColor: '#f5f6f8' }}>
+            <TouchableOpacity style={{ ...styles.cards, backgroundColor: '#f5f6f8' }} onPress={() => this.goToTeachersPage(data)}>
                 <View style={{ ...styles.iconCard, backgroundColor: '#94C752' }}>
                     <Ionicons name={'book-outline'} size={35} color='#fff' />
                 </View>
                 <View>
-                    <Text style={{ ...styles.titleCard, color: '#474747' }}>{data.item}</Text>
+                    <Text style={{ ...styles.titleCard, color: '#474747' }}>{data}</Text>
                     <Text style={{ ...styles.descriptionCard, color: '#aaafb7' }}>{count} Professor{count > 1 ? 'es' : ''}</Text>
                 </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 
     render() {
         return (
             <View style={styles.container}>
+                <StatusBar style="auto" />
+
+                {this.state.loading ?
+                <View style={styles.containerLoading}>
+                    <ActivityIndicator size="large" color="#999999" />
+                </View>
+                :
                 <ScrollView
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={{paddingBottom: 40}}
+                    keyboardShouldPersistTaps="handled"
                 >
-                    <StatusBar style="auto" />
                     <View style={styles.header}>
                         <View>
                             <Text style={{ fontSize: 24 }}>Bom Dia</Text>
@@ -140,27 +132,13 @@ export default class App extends Component {
                             <Image source={require('../../assets/user.jpeg')} style={styles.avatar} />
                         </View>
                     </View>
-                    <View style={styles.containerInput}>
-                        <Ionicons name="search-outline" size={22} color='#999' style={styles.iconInput} />
-                        <TextInput
-                            style={styles.input}
-                            onChangeText={text => this.onChangeText(text)}
-                            placeholder='Qual matéria deseja aprender?'
-                        />
-                    {this.state.text.length !== 0 ?
-                        <View style={styles.containerSearch}>
-                            <FlatList
-                                style={{ flex: 1 }}
-                                data={this.state.text.slice(0, 3)}
-                                renderItem={this.renderSearch}
-                                keyExtractor={item => item}
-                                extraData={this.state}
-                            />
-                        </View>
-                    :
-                        null
-                    }
-                    </View>
+
+                    <InputSearch
+                        subjects={this.state.subjects}
+                        teachers={this.state.teachers}
+                        exec={this.goToTeachersPage}
+                    />
+
                     <View style={{ height: 200, marginBottom: 40 }}>
                         <Text style={styles.title}>Nossos serviços</Text>
 
@@ -169,7 +147,7 @@ export default class App extends Component {
                             horizontal
                             showsHorizontalScrollIndicator={false}
                             data={this.state.services}
-                            renderItem={this.renderServices}
+                            renderItem={({item}) => this.renderServices(item)}
                             keyExtractor={item => item.id}
                             extraData={this.state.subjects}
                             ItemSeparatorComponent={() => <View style={{ width: 20 }}></View>}
@@ -183,12 +161,13 @@ export default class App extends Component {
                             horizontal
                             showsHorizontalScrollIndicator={false}
                             data={this.state.subjects}
-                            renderItem={this.renderSubjects}
+                            renderItem={({item}) => this.renderSubjects(item)}
                             keyExtractor={item => item}
                             ItemSeparatorComponent={() => <View style={{ width: 20 }}></View>}
                         />
                     </View>
                 </ScrollView>
+                }
             </View>
         );
     }
