@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import { Text, View, Image, FlatList, ScrollView, LogBox, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-import api from '../../services/api';
 import styles from './styles';
-import InputSearch from '../../components/InputSearch'
+import InputSearch from '../../components/InputSearch';
+import HomeAPI from '../../services/homeAPI';
 
 export default class App extends Component {
     constructor(props) {
@@ -47,15 +47,16 @@ export default class App extends Component {
 
     async loadTeachers() {
         var subjects = []
-        const response = await api.get()
 
-        response.data.professores.map(item => {
-            if (!subjects.includes(item.materia)) {
-                subjects.push(item.materia)
-            }
+        HomeAPI.getAPI().then(dados => {
+            dados.professores.map(item => {
+                if (!subjects.includes(item.materia)) {
+                    subjects.push(item.materia)
+                }
+            })
+
+            this.setState({ teachers: dados.professores, subjects, loading: false })
         })
-
-        this.setState({ teachers: response.data.professores, subjects, loading: false })
     }
 
     goToTeachersPage(data) {

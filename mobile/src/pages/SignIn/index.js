@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Text, View, TextInput, TouchableOpacity } from 'react-native';
-import styles from './styles'
+import styles from './styles';
+
+import LoginAPI from '../../services/loginAPI';
 
 export default class SignIn extends Component {
     constructor(props) {
@@ -11,6 +13,12 @@ export default class SignIn extends Component {
             login: null,
             senha: null
         }
+    }
+
+    async componentDidMount() {
+        LoginAPI.getAPI({login: 'Richard', password: '123'}).then(dados => { 
+            console.log('FOI ', dados)
+        })
     }
 
     render() {
