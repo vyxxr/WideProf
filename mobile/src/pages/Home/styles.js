@@ -6,7 +6,7 @@ export default StyleSheet.create({
         flex: 1,
         backgroundColor: '#fff',
         paddingTop: Constants.statusBarHeight,
-        paddingHorizontal: 20,
+        // paddingHorizontal: 20,
     },
 
     containerLoading: {
@@ -18,7 +18,8 @@ export default StyleSheet.create({
         height: 150,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        paddingHorizontal: 20
     },
 
     avatar: {
@@ -30,7 +31,8 @@ export default StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        marginBottom: 20
+        marginBottom: 20,
+        paddingHorizontal: 20
     },
 
     titleCard: {

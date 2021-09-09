@@ -134,16 +134,19 @@ export default class App extends Component {
                         </View>
                     </View>
 
-                    <InputSearch
-                        subjects={this.state.subjects}
-                        teachers={this.state.teachers}
-                        exec={this.goToTeachersPage}
-                    />
+                    <View style={{ paddingHorizontal: 20 }}>
+                        <InputSearch
+                            subjects={this.state.subjects}
+                            teachers={this.state.teachers}
+                            exec={this.goToTeachersPage}
+                        />
+                    </View>
 
                     <View style={{ height: 200, marginBottom: 40 }}>
                         <Text style={styles.title}>Nossos serviços</Text>
 
                         <FlatList
+                            contentContainerStyle={{ paddingHorizontal: 20 }}
                             style={{ flex: 1, flexDirection: 'row' }}
                             horizontal
                             showsHorizontalScrollIndicator={false}
@@ -158,6 +161,7 @@ export default class App extends Component {
                         <Text style={styles.title}>Matérias</Text>
 
                         <FlatList
+                            contentContainerStyle={{ paddingHorizontal: 20 }}
                             style={{ flex: 1, flexDirection: 'row' }}
                             horizontal
                             showsHorizontalScrollIndicator={false}

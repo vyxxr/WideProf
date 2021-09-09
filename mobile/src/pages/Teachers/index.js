@@ -29,7 +29,7 @@ export default class Teachers extends Component {
         return (
             <View style={styles.card}>
                 <View>
-                    <Image source={{uri: `http://192.168.1.9:3000${data.foto}`}} style={styles.teacherPhoto} />
+                    <Image source={{uri: `http://192.168.1.8:3000${data.foto}`}} style={styles.teacherPhoto} />
                 </View>
                 <View style={styles.cardText}>
                     <View>
